@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+    grafana:
+        image: grafana/grafana:latest
+        ports:
+          - "3000:3000"
+        networks:
+          - mehmet
+    jenkins:
+        image: jenkins:latest
+        ports:
+            - "8080:8080"
+        networks:
+            - mehmet
+    myapp:
+        image: mehmet/bookstore-api:latest
+        restart: always
+        ports:
+            - "80:80"
+        networks:
+            - mehmet
+
+networks:
+    mehmet:
+        driver: bridge
